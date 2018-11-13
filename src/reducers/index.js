@@ -1,16 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  items: [{
-    name: 'Ice cream',
-  }, {
-    name: 'Waffles',
-  }, {
-    name: 'Candy',
-    purchased: true,
-  }, {
-    name: 'Snarks',
-  }]
+  items: [],
+  error: null
 };
 
 const setGroceryItemBought = (state, item, isBought) => {
@@ -34,13 +26,30 @@ const setGroceryItemBought = (state, item, isBought) => {
  */
 const groceryReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.FETCH_GROCERY_ITEMS_SUCCESS:
+      return {
+        ...state,
+        items: action.payload,
+        error: null
+      };
+    case actionTypes.FETCH_GROCERY_ITEMS_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
     case actionTypes.ADD_GROCERY_ITEM_SUCCESS:
       return {
         ...state,
         items: [
           ...state.items,
           action.payload
-        ]
+        ],
+        error: null
+      };
+    case actionTypes.ADD_GROCERY_ITEM_FAILURE:
+      return {
+        ...state,
+        error: action.payload
       };
     case actionTypes.BUY_GROCERY_ITEM_SUCCESS:
       return {
