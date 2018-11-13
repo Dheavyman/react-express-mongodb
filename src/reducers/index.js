@@ -13,6 +13,17 @@ const initialState = {
   }]
 };
 
+const setGroceryItemBought = (state, item, isBought) => {
+  const updatedItems = state.items.map(_item => {
+    if(_item.name === item.name) {
+      _item.purchased = isBought || false;
+      return _item;
+    }
+    return _item;
+  });
+  return updatedItems;
+};
+
 /**
  * Grocery reducer
  *
@@ -31,6 +42,16 @@ const groceryReducer = (state = initialState, action) => {
           action.payload
         ]
       };
+    case actionTypes.BUY_GROCERY_ITEM_SUCCESS:
+      return {
+        ...state,
+        items: setGroceryItemBought(state, action.payload, true)
+      }
+    case actionTypes.RETURN_GROCERY_ITEM_SUCCESS:
+      return {
+        ...state,
+        items: setGroceryItemBought(state, action.payload, false)
+      }
     case actionTypes.DELETE_GROCERY_ITEM_SUCCESS: {
       const itemIndex = state.items
         .findIndex(item => item.name === action.payload.name);

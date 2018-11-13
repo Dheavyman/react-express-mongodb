@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 const propTypes = {
   item: PropTypes.shape({
@@ -26,7 +27,19 @@ class GroceryItem extends Component {
    */
   constructor(props) {
     super(props);
+    this.togglePurchased = this.togglePurchased.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+  }
+
+  togglePurchased(event) {
+    event.preventDefault();
+    const { item, actions } = this.props;
+
+    if(item.purchased) {
+      actions.returnGroceryItem(item);
+    } else {
+      actions.buyGroceryItem(item);
+    }
   }
 
   deleteItem(event) {
@@ -35,6 +48,7 @@ class GroceryItem extends Component {
 
     actions.deleteGroceryItem(item)
   }
+
   /**
    * Render method
    *
@@ -45,15 +59,42 @@ class GroceryItem extends Component {
     const { item } = this.props;
 
     return (
-      <div>
-        <div>
-          <h4 className={item.purchased ? 'strike-through' : ''}>
-            {item.name}
-          </h4>
+      <div className="col-sm-12 mb-4">
+        <div className="row">
+          <div className="col-5 col-lg-6">
+            <h4
+              className={classNames('grocery-item', {
+                'strike-through': item.purchased
+              })}
+            >
+              {item.name}
+            </h4>
+          </div>
+          <div className="col-3 col-lg-2">
+            <form className="three-columns" onSubmit={this.togglePurchased}>
+              <button
+                type="submit"
+                className={classNames('btn', {
+                  'btn-primary': !item.purchased,
+                  'btn-outline-dark': item.purchased,
+                  'btn-return': item.purchased
+                })}
+              >
+                {item.purchased ? 'Return' : 'Buy'}
+              </button>
+            </form>
+          </div>
+          <div className="col-4 col-lg-4">
+            <form onSubmit={this.deleteItem}>
+              <button
+                type="submit"
+                className="btn btn-outline-danger"
+              >
+                &times;
+              </button>
+            </form>
+          </div>
         </div>
-        <form className="three-columns" onSubmit={this.deleteItem}>
-          <button type="submit">&times;</button>
-        </form>
       </div>
     );
   }

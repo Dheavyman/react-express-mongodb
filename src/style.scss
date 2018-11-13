@@ -1,4 +1,20 @@
+.header {
+  font-family: 'Rufina', serif;
+  margin-bottom: 2.5rem;
+  margin-top: 1.5rem;
+  text-decoration: underline;
+}
+
+.grocery-item {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .strike-through {
   text-decoration: line-through;
   color: slategray;
+}
+
+.btn-return:hover {
+  background-color: #E2E6EA;
+  color: #000000
 }

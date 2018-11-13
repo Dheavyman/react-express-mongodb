@@ -9,7 +9,7 @@ import '../style.scss';
  * @returns {object} React element
  */
 const App = () => (
-  <div>
+  <div className="container">
     <GroceryItemList />
   </div>
 );

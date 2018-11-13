@@ -67,9 +67,11 @@ class GroceryItemList extends Component {
     const { input } = this.state;
     const { actions } = this.props;
 
-    actions.addGroceryItem({
-      name: input
-    });
+    if (input.trim() !== '') {
+      actions.addGroceryItem({
+        name: input.trim()
+      });
+    };
     this.setState({
       input: ''
     });
@@ -87,8 +89,10 @@ class GroceryItemList extends Component {
 
     return (
       <div>
-        <h2>Grocery Listify</h2>
-        <div>
+        <div className="card my-4 pl-3">
+          <h2 className="header">Grocery Listify</h2>
+        </div>
+        <div className="row pl-3">
           {items.map((item, index) => (
             <GroceryItem
               key={`item ${index.toString()}`}
@@ -97,11 +101,13 @@ class GroceryItemList extends Component {
             />
           ))}
         </div>
-        <GroceryListAddItem
-          input={input}
-          handleChangeInputName={this.handleChangeInputName}
-          addItem={this.addItem}
-        />
+        <div className="row">
+          <GroceryListAddItem
+            input={input}
+            handleChangeInputName={this.handleChangeInputName}
+            addItem={this.addItem}
+          />
+        </div>
       </div>
     );
   }
