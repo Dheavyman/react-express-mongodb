@@ -1,23 +1,12 @@
-import items from '../db';
+import GroceryItemController from '../controllers/groceryItem';
+import validateGroceryItemFields from '../middleware/validateGroceryItem';
 
 export default (app) => {
   app.route('/api/items')
-    .get((req, res) => {
-      return res.status(200).json({
-        status: 'success',
-        message: 'Grocery items retrieved',
-        data: items
-      });
-    })
+    .get(GroceryItemController.getAllGroceryItems)
+    .post(validateGroceryItemFields, GroceryItemController.addGroceryItem);
 
-    .post((req, res) => {
-      const item = req.body
-      items.push(item);
-
-      return res.status(201).json({
-        status: 'success',
-        message: 'Grocery item added',
-        data: item
-      });
-    })
+  app.route('/api/items/:itemId')
+    .put(validateGroceryItemFields, GroceryItemController.updateGroceryItem)
+    .delete(GroceryItemController.deleteGroceryItem)
 }

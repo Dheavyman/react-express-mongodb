@@ -63,27 +63,39 @@ const deleteGroceryItemSuccess = item => ({
 });
 
 /**
- * Buy grocery item success action creator
+ * Delete grocery item failure action creator
+ *
+ * @param {object} error - Error message
+ *
+ * @returns {object} Delete grocery item failure action
+ */
+const deleteGroceryItemFailure = error => ({
+  type: actionTypes.DELETE_GROCERY_ITEM_FAILURE,
+  payload: error
+});
+
+/**
+ * Update grocery item success action creator
  *
  * @param {object} item - Grocery item
  *
  * @returns {object} Buy grocery item success action
  */
-const buyGroceryItemSuccess = item => ({
-  type: actionTypes.BUY_GROCERY_ITEM_SUCCESS,
+const updateGroceryItemSuccess = item => ({
+  type: actionTypes.UPDATE_GROCERY_ITEM_SUCCESS,
   payload: item
 });
 
 /**
- * Return grocery item success action creator
+ * Update grocery item failure action creator
  *
- * @param {object} item - Grocery item
+ * @param {object} error - Error message
  *
- * @returns {object} Return grocery item success action
+ * @returns {object} Buy grocery item failure action
  */
-const returnGroceryItemSuccess = item => ({
-  type: actionTypes.RETURN_GROCERY_ITEM_SUCCESS,
-  payload: item
+const updateGroceryItemFailure = error => ({
+  type: actionTypes.UPDATE_GROCERY_ITEM_FAILURE,
+  payload: error
 });
 
 /**
@@ -117,10 +129,38 @@ export const fetchGroceryItems = () => async (dispatch) => {
  * @returns {any} Dispatch action creators
  */
 export const addGroceryItem = item => async (dispatch) => {
-  console.log('this shown', item);
   try {
     const response = await fetch(`${BASE_URL}/items`, {
       method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    });
+    const jsonData = await response.json();
+
+    if (response.ok) {
+      dispatch(addGroceryItemSuccess(jsonData.data));
+    } else {
+      throw new Error(jsonData.message);
+    }
+  } catch(error) {
+      dispatch(addGroceryItemFailure(error.message));
+  }
+};
+
+/**
+ * Update grocery item async action creator
+ *
+ * @param {object} item - Grocery item
+ *
+ * @returns {any} Dispatch action creators
+ */
+export const updateGroceryItem = item => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}/items/${item._id}`, {
+      method: 'PUT',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
@@ -131,36 +171,14 @@ export const addGroceryItem = item => async (dispatch) => {
     if (response.ok) {
       const jsonData = await response.json();
 
-      dispatch(addGroceryItemSuccess(jsonData.data));
+      dispatch(updateGroceryItemSuccess(jsonData.data));
     } else {
       throw new Error(response.statusText);
     }
   } catch(error) {
-      dispatch(addGroceryItemFailure(error.message));
+      dispatch(updateGroceryItemFailure(item));
   }
 };
-
-/**
- * Buy grocery item async action creator
- *
- * @param {object} item - Grocery item
- *
- * @returns {any} Dispatch action creators
- */
-export const buyGroceryItem = item => (dispatch) => {
-  dispatch(buyGroceryItemSuccess(item));
-}
-
-/**
- * Return grocery item async action creator
- *
- * @param {object} item - Grocery item
- *
- * @returns {any} Dispatch action creators
- */
-export const returnGroceryItem = item => (dispatch) => {
-  dispatch(returnGroceryItemSuccess(item));
-}
 
 /**
  * Delete grocery item async action creator
@@ -169,6 +187,19 @@ export const returnGroceryItem = item => (dispatch) => {
  *
  * @returns {any} Dispatch action creators
  */
-export const deleteGroceryItem = item => (dispatch) => {
-  dispatch(deleteGroceryItemSuccess(item));
+export const deleteGroceryItem = item => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}/items/${item._id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+    });
+
+    if (response.ok) {
+      dispatch(deleteGroceryItemSuccess(item));
+    } else {
+      throw new Error(response.statusText);
+    }
+  } catch(error) {
+      dispatch(deleteGroceryItemFailure(error.message));
+  }
 };

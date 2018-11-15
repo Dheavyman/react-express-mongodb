@@ -1,12 +1,22 @@
-const items = [{
-  name: 'Ice cream',
-}, {
-  name: 'Waffles',
-}, {
-  name: 'Candy',
-  purchased: true,
-}, {
-  name: 'Snarks',
-}]
+import mongoose from 'mongoose';
 
-export default items;
+import items from './seeders/groceryItems';
+import GroceryItem from './models/groceryItem';
+
+mongoose.connect('mongodb://localhost/grocery', {
+  useNewUrlParser: true
+}, () => {
+  console.log('Database connected');
+
+  if (process.env.NODE_ENV !== 'production') {
+    items.forEach(item => {
+      GroceryItem.find({name: item.name}, (error, items) => {
+        if(!error && !items.length) {
+          GroceryItem.create(item);
+        }
+      });
+    });
+  }
+});
+
+export default mongoose;
