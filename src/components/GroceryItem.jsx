@@ -75,7 +75,7 @@ class GroceryItem extends Component {
     const { item } = this.props;
 
     return (
-      <div className="col-sm-12 mb-4">
+      <div className="col-sm-12">
         <div className="row">
           <div className="col-5 col-lg-6">
             <h4
@@ -111,6 +111,7 @@ class GroceryItem extends Component {
             </form>
           </div>
         </div>
+        <hr />
       </div>
     );
   }

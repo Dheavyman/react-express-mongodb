@@ -1,9 +1,14 @@
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 import items from './seeders/groceryItems';
 import GroceryItem from './models/groceryItem';
 
-mongoose.connect('mongodb://localhost/grocery', {
+dotenv.config();
+
+const DB_URL = process.env.DB_URL;
+
+mongoose.connect(DB_URL, {
   useNewUrlParser: true
 }, () => {
   console.log('Database connected');
