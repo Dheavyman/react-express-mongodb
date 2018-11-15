@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-const BASE_URL = 'http://127.0.0.1:5500/api';
+const SITE_URL = `${process.env.REACT_APP_SITE_URL}/api`;
 
 /**
  * Fetch grocery items success action creator
@@ -107,7 +107,7 @@ const updateGroceryItemFailure = error => ({
  */
 export const fetchGroceryItems = () => async (dispatch) => {
   try {
-    const response = await fetch(`${BASE_URL}/items`);
+    const response = await fetch(`${SITE_URL}/items`);
 
     if (response.ok) {
       const jsonData = await response.json();
@@ -130,7 +130,7 @@ export const fetchGroceryItems = () => async (dispatch) => {
  */
 export const addGroceryItem = item => async (dispatch) => {
   try {
-    const response = await fetch(`${BASE_URL}/items`, {
+    const response = await fetch(`${SITE_URL}/items`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -159,7 +159,7 @@ export const addGroceryItem = item => async (dispatch) => {
  */
 export const updateGroceryItem = item => async (dispatch) => {
   try {
-    const response = await fetch(`${BASE_URL}/items/${item._id}`, {
+    const response = await fetch(`${SITE_URL}/items/${item._id}`, {
       method: 'PUT',
       mode: 'cors',
       headers: {
@@ -189,7 +189,7 @@ export const updateGroceryItem = item => async (dispatch) => {
  */
 export const deleteGroceryItem = item => async (dispatch) => {
   try {
-    const response = await fetch(`${BASE_URL}/items/${item._id}`, {
+    const response = await fetch(`${SITE_URL}/items/${item._id}`, {
       method: 'DELETE',
       mode: 'cors',
     });
