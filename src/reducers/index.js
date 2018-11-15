@@ -5,17 +5,6 @@ const initialState = {
   error: null
 };
 
-const setGroceryItemBought = (state, item, isBought) => {
-  const updatedItems = state.items.map(_item => {
-    if(_item.name === item.name) {
-      _item.purchased = isBought || false;
-      return _item;
-    }
-    return _item;
-  });
-  return updatedItems;
-};
-
 /**
  * Grocery reducer
  *
@@ -51,27 +40,44 @@ const groceryReducer = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
-    case actionTypes.BUY_GROCERY_ITEM_SUCCESS:
+    case actionTypes.UPDATE_GROCERY_ITEM_SUCCESS: {
+      const updatedItems = state.items.map(item => {
+        if (item._id === action.payload._id) {
+          return {
+            ...item,
+            ...action.payload
+          };
+        }
+        return item;
+      });
       return {
         ...state,
-        items: setGroceryItemBought(state, action.payload, true)
+        items: updatedItems,
+        error: null
       }
-    case actionTypes.RETURN_GROCERY_ITEM_SUCCESS:
+    }
+    case actionTypes.UPDATE_GROCERY_ITEM_FAILURE:
       return {
         ...state,
-        items: setGroceryItemBought(state, action.payload, false)
+        error: action.payload
       }
     case actionTypes.DELETE_GROCERY_ITEM_SUCCESS: {
       const itemIndex = state.items
-        .findIndex(item => item.name === action.payload.name);
+        .findIndex(item => item._id === action.payload._id);
       return {
         ...state,
         items: [
           ...state.items.slice(0, itemIndex),
           ...state.items.slice(itemIndex + 1)
-        ]
+        ],
+        error: null
       };
     }
+    case actionTypes.DELETE_GROCERY_ITEM_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      }
     default:
       return state;
   }

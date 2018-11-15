@@ -35,11 +35,11 @@ class GroceryItem extends Component {
     event.preventDefault();
     const { item, actions } = this.props;
 
-    if(item.purchased) {
-      actions.returnGroceryItem(item);
-    } else {
-      actions.buyGroceryItem(item);
+    const itemUpdate = {
+      ...item,
+      purchased: !item.purchased
     }
+    actions.updateGroceryItem(itemUpdate)
   }
 
   deleteItem(event) {
