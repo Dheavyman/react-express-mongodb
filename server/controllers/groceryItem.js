@@ -13,6 +13,7 @@ class GroceryItemController {
    * @static
    * @param {object} req - Request object
    * @param {object} res - Response object
+   *
    * @returns {object} Response to request
    * @memberof GroceryItemController
    */
@@ -35,6 +36,7 @@ class GroceryItemController {
    * @static
    * @param {object} req - Request object
    * @param {object} res - Response object
+   *
    * @returns {object} Response to request
    * @memberof GroceryItemController
    */
@@ -53,6 +55,16 @@ class GroceryItemController {
     })
   }
 
+  /**
+   * Update grocery item
+   *
+   * @static
+   * @param {object} req - Request object
+   * @param {object} res - Response object
+   *
+   * @returns {object} Response to request
+   * @memberof GroceryItemController
+   */
   static updateGroceryItem(req, res) {
     GroceryItem.findById(req.params.itemId, (error, item) => {
       if (error) {
@@ -74,6 +86,16 @@ class GroceryItemController {
     });
   }
 
+  /**
+   * Delete grocery item
+   *
+   * @static
+   * @param {object} req - Request object
+   * @param {object} res - Response object
+   *
+   * @returns {object} Response to request
+   * @memberof GroceryItemController
+   */
   static deleteGroceryItem(req, res) {
     GroceryItem.findByIdAndDelete(req.params.itemId, (error, item) => {
       if (error) {

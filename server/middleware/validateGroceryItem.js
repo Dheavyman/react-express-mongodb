@@ -1,6 +1,15 @@
 import Joi from 'joi';
 
-const validateGroceryItemField = (req, res, next) => {
+/**
+ * Validate grocery item fields
+ *
+ * @param {object} req - Request object
+ * @param {object} res - Response object
+ * @param {function} next - Next route handler
+ *
+ * @returns {any} Response object
+ */
+const validateGroceryItemFields = (req, res, next) => {
   const schema = Joi.object().keys({
     name: Joi.string().regex(/^[a-z][a-z- ]*$/i).required().error(new Error(
       'Item name must contain only english alphabets, spaces and hyphen.')),
@@ -23,4 +32,4 @@ const validateGroceryItemField = (req, res, next) => {
   next();
 };
 
-export default validateGroceryItemField;
+export default validateGroceryItemFields;

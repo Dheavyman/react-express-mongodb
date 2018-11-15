@@ -31,6 +31,14 @@ class GroceryItem extends Component {
     this.deleteItem = this.deleteItem.bind(this);
   }
 
+  /**
+   * Toggle grocery item purchased property
+   *
+   * @param {object} event - Event
+   *
+   * @return {any} - None
+   * @memberof GroceryItem
+   */
   togglePurchased(event) {
     event.preventDefault();
     const { item, actions } = this.props;
@@ -42,6 +50,14 @@ class GroceryItem extends Component {
     actions.updateGroceryItem(itemUpdate)
   }
 
+  /**
+   * Delete grocery item
+   *
+   * @param {object} event - Event
+   *
+   * @returns {any} - None
+   * @memberof GroceryItem
+   */
   deleteItem(event) {
     event.preventDefault();
     const { item, actions } = this.props;

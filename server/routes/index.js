@@ -1,12 +1,12 @@
 import GroceryItemController from '../controllers/groceryItem';
-import validateGroceryItemField from '../middleware/validateGroceryItem';
+import validateGroceryItemFields from '../middleware/validateGroceryItem';
 
 export default (app) => {
   app.route('/api/items')
     .get(GroceryItemController.getAllGroceryItems)
-    .post(validateGroceryItemField, GroceryItemController.addGroceryItem);
+    .post(validateGroceryItemFields, GroceryItemController.addGroceryItem);
 
   app.route('/api/items/:itemId')
-    .put(validateGroceryItemField, GroceryItemController.updateGroceryItem)
+    .put(validateGroceryItemFields, GroceryItemController.updateGroceryItem)
     .delete(GroceryItemController.deleteGroceryItem)
 }
