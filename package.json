@@ -7,6 +7,7 @@
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "joi": "^14.0.6",
     "mongoose": "^5.3.12",
@@ -43,6 +44,8 @@
     "@babel/core": "^7.1.5",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "ignore-styles": "^5.0.1",
     "nodemon": "^1.18.6",
     "redux-mock-store": "^1.5.3"
   }

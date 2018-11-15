@@ -89,8 +89,8 @@ class GroceryItemList extends Component {
 
     return (
       <div>
-        <div className="card my-4 pl-3">
-          <h2 className="header">Grocery Listify</h2>
+        <div className="card header my-4 pl-3">
+          <h2>Grocery Listify</h2>
         </div>
         <div className="row pl-3">
           {items.map((item, index) => (

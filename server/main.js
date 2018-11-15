@@ -3,9 +3,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import cors from 'cors';
+import 'ignore-styles';
 
 import routes from './routes'
 import mongoose from './db';
+import renderer from './middleware/renderer';
 
 const app = new express();
 const db = mongoose.connection;
@@ -13,11 +15,9 @@ const db = mongoose.connection;
 app.use(logger('short'));
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.static(path.join(__dirname, '..', 'build')))
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+app.get('/', renderer);
 
 routes(app);
 

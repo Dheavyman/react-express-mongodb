@@ -1,8 +1,13 @@
 .header {
-  font-family: 'Rufina', serif;
-  margin-bottom: 2.5rem;
-  margin-top: 1.5rem;
-  text-decoration: underline;
+  background-color: #2B6FB3;
+
+  h2 {
+    font-family: 'Rufina', serif;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    margin-top: 1.5rem;
+    text-decoration: underline;
+  }
 }
 
 .grocery-item {
