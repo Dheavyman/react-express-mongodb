@@ -36,7 +36,9 @@
     "build:server": "babel ./server -d ./dist",
     "start:server": "nodemon --exec babel-node ./server/main",
     "predeploy": "yarn build && yarn build:server",
-    "deploy": "node ./dist/main"
+    "deploy": "node ./dist/main",
+    "test:server": "NODE_ENV=test nyc mocha --require @babel/register server/__tests__/**/*.js --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,7 +51,31 @@
   ],
   "devDependencies": {
     "@babel/node": "^7.0.0",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.6",
-    "redux-mock-store": "^1.5.3"
+    "nyc": "^13.1.0",
+    "react-test-renderer": "^16.6.3",
+    "redux-mock-store": "^1.5.3",
+    "supertest": "^3.3.0"
+  },
+  "nyc": {
+    "exclude": [
+      "**/src",
+      "**/server/__tests__",
+      "**/server/models",
+      "**/server/seeders",
+      "**/server/routes",
+      "**/server/middleware/renderer.js",
+      "**/server/db.js",
+      "**/server/main.js"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/src/components/**/*.{js,jsx}",
+      "**/src/actions/**/*.js"
+    ]
   }
 }

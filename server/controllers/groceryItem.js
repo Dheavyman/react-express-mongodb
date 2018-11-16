@@ -98,6 +98,7 @@ class GroceryItemController {
    */
   static deleteGroceryItem(req, res) {
     GroceryItem.findByIdAndDelete(req.params.itemId, (error, item) => {
+      console.log(error)
       if (error) {
         return queryErrorResponse(error, res);
       }
