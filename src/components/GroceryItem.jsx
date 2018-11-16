@@ -8,6 +8,7 @@ const propTypes = {
     purchased: PropTypes.bool
   }).isRequired,
   actions: PropTypes.shape({
+    updateGroceryItem: PropTypes.func.isRequired,
     deleteGroceryItem: PropTypes.func.isRequired
   }).isRequired
 };

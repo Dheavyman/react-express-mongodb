@@ -24,7 +24,7 @@ const propTypes = {
  * @class GroceryItemList
  * @extends {Component}
  */
-class GroceryItemList extends Component {
+export class GroceryItemList extends Component {
   /**
    * Creates an instance of GroceryItemList.
    *

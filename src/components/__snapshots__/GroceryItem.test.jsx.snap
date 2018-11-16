@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GroceryItem component should render the component 1`] = `
+<div
+  className="col-sm-12"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-5 col-lg-6"
+    >
+      <h4
+        className="grocery-item"
+      >
+        Honey
+      </h4>
+    </div>
+    <div
+      className="col-3 col-lg-2"
+    >
+      <form
+        className="three-columns"
+        onSubmit={[Function]}
+      >
+        <button
+          className="btn btn-primary"
+          type="submit"
+        >
+          Buy
+        </button>
+      </form>
+    </div>
+    <div
+      className="col-4 col-lg-4"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <button
+          className="btn btn-outline-danger"
+          type="submit"
+        >
+          ×
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr />
+</div>
+`;

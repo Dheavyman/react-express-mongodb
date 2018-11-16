@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GroceryItemList component should render component 1`] = `
+<div>
+  <div
+    className="card header my-4 pl-3"
+  >
+    <h2>
+      Grocery Listify
+    </h2>
+  </div>
+  <div
+    className="row pl-3"
+  >
+    <div
+      className="col-sm-12"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-5 col-lg-6"
+        >
+          <h4
+            className="grocery-item"
+          >
+            Pizza
+          </h4>
+        </div>
+        <div
+          className="col-3 col-lg-2"
+        >
+          <form
+            className="three-columns"
+            onSubmit={[Function]}
+          >
+            <button
+              className="btn btn-primary"
+              type="submit"
+            >
+              Buy
+            </button>
+          </form>
+        </div>
+        <div
+          className="col-4 col-lg-4"
+        >
+          <form
+            onSubmit={[Function]}
+          >
+            <button
+              className="btn btn-outline-danger"
+              type="submit"
+            >
+              ×
+            </button>
+          </form>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div
+      className="col-sm-12"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-5 col-lg-6"
+        >
+          <h4
+            className="grocery-item"
+          >
+            Malt
+          </h4>
+        </div>
+        <div
+          className="col-3 col-lg-2"
+        >
+          <form
+            className="three-columns"
+            onSubmit={[Function]}
+          >
+            <button
+              className="btn btn-primary"
+              type="submit"
+            >
+              Buy
+            </button>
+          </form>
+        </div>
+        <div
+          className="col-4 col-lg-4"
+        >
+          <form
+            onSubmit={[Function]}
+          >
+            <button
+              className="btn btn-outline-danger"
+              type="submit"
+            >
+              ×
+            </button>
+          </form>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm pl-4"
+    >
+      <form
+        className="form-inline"
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group mt-3 mt-sm-0"
+        >
+          <label
+            className="sr-only"
+            htmlFor="inputGroceryItem"
+          >
+            Grocery item
+          </label>
+          <input
+            className="form-control"
+            id="inputGroceryItem"
+            onChange={[Function]}
+            placeholder="Grocery item"
+            type="text"
+            value=""
+          />
+        </div>
+        <button
+          className="btn btn-outline-primary"
+          type="submit"
+        >
+          Add Item
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
