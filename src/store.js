@@ -7,6 +7,9 @@ import reducer from './reducers';
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
+const preLoadedState = window.__PRELOADED_STATE__;
+
+delete window.__PRELOADED_STATE__;
 
 let enhancer;
 
@@ -18,6 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const store = createStore(
   reducer,
+  preLoadedState,
   enhancer,
 );
 

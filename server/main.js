@@ -1,3 +1,4 @@
+import '@babel/register';
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -15,9 +16,10 @@ const db = mongoose.connection;
 app.use(logger('short'));
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '..', 'build')))
 
 app.get('/', renderer);
+
+app.use(express.static(path.join(__dirname, '..', 'build')))
 
 routes(app);
 
