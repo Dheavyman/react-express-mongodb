@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import '@babel/register';
 import path from 'path';
 import express from 'express';
@@ -10,8 +11,15 @@ import routes from './routes'
 import mongoose from './db';
 import renderer from './middleware/renderer';
 
+dotenv.config();
+
 const app = new express();
-const db = mongoose.connection;
+let db;
+
+if (process.env.NODE_ENV !== 'test') {
+  db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+}
 
 app.use(logger('short'));
 app.use(cors());
@@ -33,4 +41,4 @@ app.listen(app.get('port'), (error) => {
   console.log(`Server running on port ${app.get('port')}`);
 });
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+export default app;
